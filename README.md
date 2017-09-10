@@ -52,3 +52,47 @@ PS：[推荐使用GitHub插件查看代码](https://insight.io/)。代码、文�
 - 3.抽象（Product）角色抽象模式所创建的所有对象的父类，它负责描述所有实例所共有的公共接口。
 - 4.具体产品（Concrete Product）角色抽象模式所创建的具体实例对象<br>
 总结：抽象工厂中方法对应产品结构，具体工厂对应产品族。
+# java 23种设计模式----单例模式
+## 1、什么是单例模式
+
+单例模式是一种对象创建型模式，使用单例模式，可以保证为一个类只生成唯一的实例对象。也就是说，在整个程序空间中，该类只存在一个实例对象。<br>
+其实，GoF对单例模式的定义是：保证一个类、只有一个实例存在，同时提供能对该实例加以访问的全局访问方法。
+## 2、为什么要使用单例模式呢？
+
+在应用系统开发中，我们常常有以下需求：
+- 在多个线程之间，比如servlet环境，共享同一个资源或者操作同一个对象
+- 在整个程序空间使用全局变量，共享资源
+- 大规模系统中，为了性能的考虑，需要节省对象的创建时间等等。<br>
+
+因为Singleton模式可以保证为一个类只生成唯一的实例
+对象，所以这些情况，Singleton模式就派上用场了。
+## 3、单例模式实现
+- 1.饿汉式。
+```
+public static final Person person = new Person();
+```
+- 2.懒汉式。
+```
+//提供一个全局的静态方法，使用同步方法
+public static synchronized Person3 getPerson() {
+		if(person == null) {
+			person = new Person3();
+		}
+		return person;
+	}
+```
+- 3.双重检查。
+```
+//提供一个全局的静态方法
+public static Person4 getPerson() {
+		if(person == null) {
+			synchronized (Person4.class) {
+				if(person == null) {
+					person = new Person4();
+				}
+			}
+
+		}
+		return person;
+	}
+```
